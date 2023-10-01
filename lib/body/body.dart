@@ -7,13 +7,20 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Divider(height: 1, color: Colors.grey[800]),
-        const StoryLine(),
-        Divider(height: 1, color: Colors.grey[800]),
-        const HomeFeed()
-      ],
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        if (index == 0) {
+          return Column(
+            children: [
+              Divider(height: 1, color: Colors.grey[800]),
+              const StoryLine(),
+              Divider(height: 1, color: Colors.grey[800]),
+            ],
+          );
+        } else {
+          return const HomeFeed();
+        }
+      },
     );
   }
 }

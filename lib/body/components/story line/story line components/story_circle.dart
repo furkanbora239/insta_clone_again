@@ -3,14 +3,23 @@ import 'package:flutter/material.dart';
 class StoryCircle extends StatelessWidget {
   const StoryCircle({
     super.key,
+    required this.userName,
   });
+
+  final String userName;
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(8.0),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
       child: Column(
-        children: [StoryImage(), SizedBox(height: 4), StoryName()],
+        children: [
+          const StoryImage(),
+          const SizedBox(height: 4),
+          StoryName(
+            userName: userName,
+          )
+        ],
       ),
     );
   }
@@ -19,14 +28,22 @@ class StoryCircle extends StatelessWidget {
 class StoryName extends StatelessWidget {
   const StoryName({
     super.key,
+    required this.userName,
   });
+  final String userName;
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
-      'mahmut_tuncer',
-      style: TextStyle(fontSize: 12),
-      overflow: TextOverflow.fade,
+    return SizedBox(
+      width: 63,
+      child: Text(
+        userName.length > 10 ? '${userName.substring(0, 10)}...' : userName,
+        softWrap: false,
+        style: const TextStyle(
+          fontSize: 12,
+        ),
+        overflow: TextOverflow.ellipsis,
+      ),
     );
   }
 }
@@ -39,8 +56,9 @@ class StoryImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80,
-      width: 80,
+      padding: EdgeInsets.zero,
+      height: 64,
+      width: 64,
       decoration: BoxDecoration(
           gradient: LinearGradient(colors: [
             Colors.purple[900]!,
@@ -54,7 +72,7 @@ class StoryImage extends StatelessWidget {
         decoration:
             const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
         child: Padding(
-          padding: const EdgeInsets.all(3.0),
+          padding: const EdgeInsets.all(2.0),
           child: CircleAvatar(
             backgroundColor: Colors.grey[300],
             foregroundImage:
