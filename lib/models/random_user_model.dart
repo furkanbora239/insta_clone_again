@@ -39,11 +39,11 @@ class Info {
     if (json["seed"] is String) {
       seed = json["seed"];
     }
-    if (json["results"] is num) {
-      results = (json["results"] as num).toInt();
+    if (json["results"] is int) {
+      results = json["results"];
     }
-    if (json["page"] is num) {
-      page = (json["page"] as num).toInt();
+    if (json["page"] is int) {
+      page = json["page"];
     }
     if (json["version"] is String) {
       version = json["version"];
@@ -224,8 +224,8 @@ class Registered {
     if (json["date"] is String) {
       date = json["date"];
     }
-    if (json["age"] is num) {
-      age = (json["age"] as num).toInt();
+    if (json["age"] is int) {
+      age = json["age"];
     }
   }
 
@@ -247,8 +247,8 @@ class Dob {
     if (json["date"] is String) {
       date = json["date"];
     }
-    if (json["age"] is num) {
-      age = (json["age"] as num).toInt();
+    if (json["age"] is int) {
+      age = json["age"];
     }
   }
 
@@ -320,7 +320,7 @@ class Location {
   String? city;
   String? state;
   String? country;
-  String? postcode;
+  int? postcode;
   Coordinates? coordinates;
   Timezone? timezone;
 
@@ -346,7 +346,7 @@ class Location {
     if (json["country"] is String) {
       country = json["country"];
     }
-    if (json["postcode"] is String) {
+    if (json["postcode"] is int) {
       postcode = json["postcode"];
     }
     if (json["coordinates"] is Map) {
@@ -432,8 +432,8 @@ class Street {
   Street({this.number, this.name});
 
   Street.fromJson(Map<String, dynamic> json) {
-    if (json["number"] is num) {
-      number = (json["number"] as num).toInt();
+    if (json["number"] is int) {
+      number = json["number"];
     }
     if (json["name"] is String) {
       name = json["name"];

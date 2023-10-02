@@ -4,9 +4,11 @@ class StoryCircle extends StatelessWidget {
   const StoryCircle({
     super.key,
     required this.userName,
+    required this.image,
   });
 
   final String userName;
+  final ImageProvider<Object> image;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,9 @@ class StoryCircle extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          const StoryImage(),
+          StoryImage(
+            image: image,
+          ),
           const SizedBox(height: 4),
           StoryName(
             userName: userName,
@@ -51,7 +55,10 @@ class StoryName extends StatelessWidget {
 class StoryImage extends StatelessWidget {
   const StoryImage({
     super.key,
+    required this.image,
   });
+
+  final ImageProvider<Object> image;
 
   @override
   Widget build(BuildContext context) {
@@ -75,8 +82,7 @@ class StoryImage extends StatelessWidget {
           padding: const EdgeInsets.all(2.0),
           child: CircleAvatar(
             backgroundColor: Colors.grey[300],
-            foregroundImage:
-                const NetworkImage('https://picsum.photos/70?random=1'),
+            foregroundImage: image,
             child: const Icon(
               Icons.person,
               size: double.infinity,

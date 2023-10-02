@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:insta_clone_again/body/body.dart';
+import 'package:insta_clone_again/mixins/profile_picture.dart';
 
 void main() {
   runApp(const MainApp());
@@ -40,36 +41,52 @@ class MainApp extends StatelessWidget {
               style: GoogleFonts.dancingScript(fontSize: 28),
             )),
         body: const Body(),
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          selectedIconTheme: const IconThemeData(color: Colors.black),
-          unselectedIconTheme: const IconThemeData(
-            color: Colors.black,
-          ),
-          iconSize: 35,
-          items: const [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined),
-                activeIcon: Icon(Icons.home_filled),
-                label: ''),
-            BottomNavigationBarItem(
-                icon: Icon(
-                  CupertinoIcons.search,
-                ),
-                activeIcon: Icon(CupertinoIcons.search, weight: 2),
-                label: ''),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.add_box_outlined), label: ''),
-            BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.heart),
-                activeIcon: Icon(CupertinoIcons.heart_fill),
-                label: ''),
-            BottomNavigationBarItem(icon: CircleAvatar(radius: 17), label: ''),
-          ],
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-        ),
+        bottomNavigationBar: const BottomNavBar(),
       ),
+    );
+  }
+}
+
+class BottomNavBar extends StatelessWidget with ProfilePicture {
+  const BottomNavBar({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      selectedIconTheme: const IconThemeData(color: Colors.black),
+      unselectedIconTheme: const IconThemeData(
+        color: Colors.black,
+      ),
+      iconSize: 35,
+      items: [
+        const BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            activeIcon: Icon(Icons.home_filled),
+            label: ''),
+        const BottomNavigationBarItem(
+            icon: Icon(
+              CupertinoIcons.search,
+            ),
+            activeIcon: Icon(CupertinoIcons.search, weight: 2),
+            label: ''),
+        const BottomNavigationBarItem(
+            icon: Icon(Icons.add_box_outlined), label: ''),
+        const BottomNavigationBarItem(
+            icon: Icon(CupertinoIcons.heart),
+            activeIcon: Icon(CupertinoIcons.heart_fill),
+            label: ''),
+        BottomNavigationBarItem(
+            icon: CircleAvatar(
+              radius: 17,
+              foregroundImage: profilePicture,
+            ),
+            label: ''),
+      ],
+      showSelectedLabels: false,
+      showUnselectedLabels: false,
     );
   }
 }
